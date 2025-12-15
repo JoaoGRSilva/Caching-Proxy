@@ -1,15 +1,11 @@
-import redis
-from redis.cache import CacheConfig
-from controllers import get_products
+import json
+from utils.redis_client import r
 
-def check_cache():
+def get_cache(key):
+    value = r.get(key)
+    if value:
+        return json.loads(value)
+    return None
 
-    r = redis.Redis(host='localhost', port="6379", decode_responses = True)
-
-    value = r.exists("products")
-
-    if value == False:
-        print("X-Cache: MISS")
-        r.set(get_products())
-
-        return ()
+def set_cache(key, value, ttl=60):
+    r.set(key, json.dumps(value), ex=ttl)

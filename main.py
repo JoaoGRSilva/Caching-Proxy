@@ -1,7 +1,10 @@
-from redis import Redis
+from controllers.proxy import app
+import uvicorn
 
-r = Redis(host='localhost', port='6379', decode_responses=True)
-
-r.set('foo', 'bar')
-
-print(r.get('foo'))
+if __name__ == "__main__":
+    uvicorn.run(
+        app,
+        host="127.0.0.1",
+        port=3000,
+        reload=True
+    )
