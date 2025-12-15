@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from utils.cache import get_cache, set_cache
+from app.utils.cache import get_cache, set_cache
 import requests
 
 app = FastAPI()

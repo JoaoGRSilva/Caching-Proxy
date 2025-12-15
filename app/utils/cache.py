@@ -1,5 +1,5 @@
 import json
-from utils.redis_client import r
+from app.utils.redis_client import r
 
 def get_cache(key):
     value = r.get(key)
